@@ -5,7 +5,7 @@
 // For local testing: 'http://127.0.0.1:8000/predict'
 // For production (when deployed): e.g., 'https://your-api.onrender.com/predict'
 
-const BACKEND_API_URL = 'http://127.0.0.1:8000/predict';
+const BACKEND_API_URL = 'https://mental-health-score-arjun.onrender.com';
 
 // =======================================================================
 
