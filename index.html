@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="aurora"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-panel">
+        <a href="#" class="nav-logo">Mental Health Predictor</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#prediction">Prediction</a></li>
+        </ul>
+        <a href="#prediction" class="btn btn-primary nav-cta">
+            Predict Now <i class="ph ph-arrow-right"></i>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-arc"></div>
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="badge">✨ Machine Learning Wellness Analysis</div>
+            <h1 class="display-font">
+                Predict Your Mental Health Score<br>
+                <span class="gradient-text">Before Stress Predicts You.</span>
+            </h1>
+            <p>Understand your mental wellness using ML-powered predictions based on your lifestyle, study habits, sleep, stress levels, and social media usage. Get instant data-driven insights.</p>
+            
+            <div class="hero-buttons">
+                <a href="#prediction" class="btn btn-primary">🚀 Start Prediction</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+
+            <!-- Dashboard Preview Illustration -->
+            <div class="dashboard-wrapper">
+                <div class="glass-panel dashboard-ui" id="hero-dashboard">
+                    <div class="dash-card">
+                        <div class="dash-score-ring">
+                            <svg viewBox="0 0 160 160">
+                                <circle class="bg" cx="80" cy="80" r="70"></circle>
+                                <circle class="progress" cx="80" cy="80" r="70"></circle>
+                            </svg>
+                            <div class="dash-score-text">7.8</div>
+                        </div>
+                        <p style="color:var(--text-muted); margin-top:1rem; font-size:0.9rem;">Mental Health Score (/10)</p>
+                    </div>
+                    <div class="dash-card dash-stats">
+                        <div class="dash-stat-row">
+                            <span class="dash-stat-label">Stress Level</span>
+                            <div class="dash-stat-bar-bg"><div class="dash-stat-bar-fill" style="width: 40%; background: #FF6B6B;"></div></div>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span class="dash-stat-label">Sleep Hours</span>
+                            <div class="dash-stat-bar-bg"><div class="dash-stat-bar-fill" style="width: 75%; background: #4D8DFF;"></div></div>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span class="dash-stat-label">Study Hours</span>
+                            <div class="dash-stat-bar-bg"><div class="dash-stat-bar-fill" style="width: 60%; background: #9F6BFF;"></div></div>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span class="dash-stat-label">Social Media</span>
+                            <div class="dash-stat-bar-bg"><div class="dash-stat-bar-fill" style="width: 85%; background: #FFD166;"></div></div>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span class="dash-stat-label">Daily Unlocks</span>
+                            <div class="dash-stat-bar-bg"><div class="dash-stat-bar-fill" style="width: 50%; background: #06D6A0;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="display-font gradient-text">Data-Driven Analytics</h2>
+                <p style="color: var(--text-muted);">Discover what drives your mental wellbeing with our Random Forest Regressor model.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="glass-panel feature-card tilt-card">
+                    <div class="feature-icon"><i class="ph ph-brain"></i></div>
+                    <h3 class="display-font">ML Prediction</h3>
+                    <p>Machine Learning model trained on 5,000+ records to predict your mental wellness score with 86.5% R² accuracy.</p>
+                </div>
+                <div class="glass-panel feature-card tilt-card">
+                    <div class="feature-icon"><i class="ph ph-moon-stars"></i></div>
+                    <h3 class="display-font">Sleep Analysis</h3>
+                    <p>Correlates the direct impact of your sleeping habits on daily stress and academic focus.</p>
+                </div>
+                <div class="glass-panel feature-card tilt-card">
+                    <div class="feature-icon"><i class="ph ph-device-mobile"></i></div>
+                    <h3 class="display-font">Social Media Insights</h3>
+                    <p>Analyzes your screen time, daily unlocks, and specific platform usage patterns.</p>
+                </div>
+                <div class="glass-panel feature-card tilt-card">
+                    <div class="feature-icon"><i class="ph ph-chart-line-up"></i></div>
+                    <h3 class="display-font">Personalized Score</h3>
+                    <p>Receive an instant, comprehensive AI-generated mental wellness score out of 10.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Form Section -->
+    <section class="prediction" id="prediction">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="display-font gradient-text">Analyze Your Routine</h2>
+                <p style="color: var(--text-muted);">Fill in the details to run your data through the prediction model.</p>
+            </div>
+
+            <div class="glass-panel prediction-container" id="form-wrapper">
+                <form id="predictionForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number" name="age" class="modern-input" placeholder="e.g. 22" required min="10" max="100">
+                        </div>
+                        <div class="input-group">
+                            <label>Gender</label>
+                            <select name="gender" class="modern-input" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Country</label>
+                            <input type="text" name="country" class="modern-input" placeholder="e.g. USA" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Academic Level</label>
+                            <select name="academic_level" class="modern-input" required>
+                                <option value="" disabled selected>Select Level</option>
+                                <option value="High School">High School</option>
+                                <option value="Undergraduate">Undergraduate</option>
+                                <option value="Graduate">Graduate</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Most Used Platform</label>
+                            <select name="most_used_platform" class="modern-input" required>
+                                <option value="" disabled selected>Select Platform</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="YouTube">YouTube</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="Snapchat">Snapchat</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="WeChat">WeChat</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Purpose of Use</label>
+                            <select name="purpose_of_use" class="modern-input" required>
+                                <option value="" disabled selected>Select Purpose</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Education">Education</option>
+                                <option value="Networking">Networking</option>
+                                <option value="News">News</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Average Daily Usage (Hours)</label>
+                            <input type="number" name="avg_daily_usage_hours" step="0.1" class="modern-input" placeholder="e.g. 4.5" required min="0" max="24">
+                        </div>
+                        <div class="input-group">
+                            <label>Daily Unlocks (Phone)</label>
+                            <input type="number" name="daily_unlocks" class="modern-input" placeholder="e.g. 85" required min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Study Hours (Daily)</label>
+                            <input type="number" name="study_hours" step="0.1" class="modern-input" placeholder="e.g. 6.0" required min="0" max="24">
+                        </div>
+                        <div class="input-group">
+                            <label>Physical Activity (Hours)</label>
+                            <input type="number" name="physical_activity_hours" step="0.1" class="modern-input" placeholder="e.g. 1.5" required min="0" max="24">
+                        </div>
+                        <div class="input-group">
+                            <label>Sleep Hours Per Night</label>
+                            <input type="number" name="sleep_hours_per_night" step="0.1" class="modern-input" placeholder="e.g. 7.5" required min="0" max="24">
+                        </div>
+                        <div class="input-group">
+                            <label>Stress Level</label>
+                            <select name="stress_level" class="modern-input" required>
+                                <option value="" disabled selected>Select Stress Level</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Very High">Very High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary predict-btn">Predict Score <i class="ph ph-sparkle"></i></button>
+                </form>
+
+                <!-- Loading State -->
+                <div id="loading-state">
+                    <div class="spinner"></div>
+                    <h3 class="display-font">Model is processing your data...</h3>
+                    <p style="color: var(--text-muted); margin-top:0.5rem;">Connecting to Prediction API</p>
+                </div>
+
+                <!-- Result State -->
+                <div id="result-state">
+                    <h3 class="display-font gradient-text" style="font-size: 2rem; margin-bottom: 2rem;">Your Mental Wellness Insight</h3>
+                    
+                    <div class="result-score-ring">
+                        <svg viewBox="0 0 200 200">
+                            <circle class="bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="progress" cx="100" cy="100" r="90" id="result-circle"></circle>
+                        </svg>
+                        <div class="final-score" id="score-text">0.0</div>
+                    </div>
+
+                    <div class="status-badge" id="status-badge">🟢 Excellent</div>
+
+                    <div class="suggestions-list">
+                        <h4 class="display-font">Model Suggestions:</h4>
+                        <ul id="suggestions-ul">
+                            <li style="animation-delay: 0.1s"><i class="ph ph-moon-stars"></i> Get enough consistent sleep</li>
+                            <li style="animation-delay: 0.2s"><i class="ph ph-device-mobile-slash"></i> Reduce social media screen time</li>
+                            <li style="animation-delay: 0.3s"><i class="ph ph-sneaker"></i> Exercise regularly</li>
+                            <li style="animation-delay: 0.4s"><i class="ph ph-book-open"></i> Maintain study-life balance</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn-secondary" style="margin-top: 2.5rem;" onclick="resetForm()">Run Another Prediction</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3 class="display-font"><span class="counter" data-target="5000">0</span>+</h3>
+                <p>Training Records</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="display-font"><span class="counter" data-target="86">0</span>.5%</h3>
+                <p>R² Accuracy</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="display-font">12</h3>
+                <p>Input Features</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="display-font">10</h3>
+                <p>Max Score</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-logo gradient-text">Mental Health Predictor</a>
+                    <p style="color: var(--text-muted); max-width: 300px; line-height: 1.6;">A machine learning project built with Python, scikit-learn, FastAPI, and vanilla web technologies.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="ph ph-github-logo"></i></a>
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="display-font">Project Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Overview</a></li>
+                        <li><a href="#features">Architecture</a></li>
+                        <li><a href="#prediction">Live Demo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="display-font">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Contact Me</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Mental Health Predictor Project.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
