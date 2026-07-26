@@ -1,4 +1,5 @@
 import joblib
+import numpy as np
 model=joblib.load("Mental_Health_Model.pkl")
 print(model)
 from fastapi import FastAPI
