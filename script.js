@@ -1,16 +1,7 @@
-// =======================================================================
-// ⚙️ BACKEND CONFIGURATION
-// =======================================================================
-// The link to your FastAPI backend. 
-// For local testing: 'http://127.0.0.1:8000/predict'
-// For production (when deployed): e.g., 'https://your-api.onrender.com/predict'
+
 
 const BACKEND_API_URL = 'https://mental-health-score-arjun.onrender.com';
 
-// =======================================================================
-
-
-// --- 1. Background Canvas Animation (Stars & Particles) ---
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -42,18 +33,16 @@ window.addEventListener('mousemove', (e) => {
 function animateCanvas() {
     ctx.clearRect(0, 0, width, height);
     
-    // Draw particles/stars
     particles.forEach(p => {
         p.x += p.dx;
         p.y += p.dy;
 
-        // Screen wrapping
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        // Mouse interaction (glow effect)
+
         let dist = 1000;
         if (mouse.x != null) {
             const dx = mouse.x - p.x;
@@ -70,7 +59,6 @@ function animateCanvas() {
         ctx.fill();
     });
 
-    // Random shooting star
     if (Math.random() < 0.005) {
         ctx.beginPath();
         let sx = Math.random() * width;
@@ -87,8 +75,6 @@ function animateCanvas() {
 
 initCanvas();
 animateCanvas();
-
-// --- 2. Tilt Parallax Effect (Features & Dashboard) ---
 const tiltCards = document.querySelectorAll('.tilt-card, #hero-dashboard');
 
 tiltCards.forEach(card => {
@@ -100,7 +86,7 @@ tiltCards.forEach(card => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg rotation
+        const rotateX = ((y - centerY) / centerY) * -10; 
         const rotateY = ((x - centerX) / centerX) * 10;
         
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
@@ -108,14 +94,13 @@ tiltCards.forEach(card => {
     
     card.addEventListener('mouseleave', () => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-        // Restore hero dashboard default animation transform
+ 
         if(card.id === 'hero-dashboard') {
             card.style.transform = ''; 
         }
     });
 });
 
-// --- 3. Intersection Observer for Counters & Scroll Reveal ---
 const observerOptions = {
     threshold: 0.5
 };
@@ -133,7 +118,7 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
                 const updateCounter = () => {
                     current += step;
                     if (current < target) {
-                        // Check if it's a decimal number (like 86.5)
+        
                         counter.innerText = target % 1 === 0 ? Math.ceil(current) : current.toFixed(1);
                         requestAnimationFrame(updateCounter);
                     } else {
@@ -150,7 +135,7 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
 const statsSection = document.querySelector('.stats');
 if(statsSection) counterObserver.observe(statsSection);
 
-// --- 4. Smooth Scrolling ---
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -160,7 +145,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// --- 5. Form Submission via FastAPI Backend & Result Animation ---
+
 const form = document.getElementById('predictionForm');
 const loadingState = document.getElementById('loading-state');
 const resultState = document.getElementById('result-state');
@@ -172,11 +157,10 @@ if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Hide form, show loading
+   
         form.style.display = 'none';
         loadingState.style.display = 'block';
 
-        // Prepare the payload based on the StudentData model for FastAPI
         const payload = {
             age: parseInt(form.age.value),
             gender: form.gender.value,
@@ -195,7 +179,7 @@ if (form) {
         let finalScore = 0.0;
 
         try {
-            // Send the POST request to your backend URL defined at the top
+     
             const response = await fetch(BACKEND_API_URL, {
                 method: 'POST',
                 headers: {
@@ -209,20 +193,19 @@ if (form) {
                 finalScore = parseFloat(data.predicted_mental_health_score);
             } else {
                 console.error("API error, falling back to mock data.");
-                finalScore = parseFloat((Math.random() * 4 + 4.5).toFixed(1)); // mock fallback
+                finalScore = parseFloat((Math.random() * 4 + 4.5).toFixed(1)); 
             }
         } catch (error) {
             console.error("Server unreachable, using mock prediction.", error);
-            // Fallback for demonstration if the backend isn't running
+  
             finalScore = parseFloat((Math.random() * 4 + 4.5).toFixed(1)); 
         }
 
-        // Display results with animation
         setTimeout(() => {
             loadingState.style.display = 'none';
             resultState.style.display = 'block';
             
-            // Update Status based on 10-point score
+
             let color, status;
             if (finalScore >= 7.5) {
                 color = '#4CAF50'; status = '🟢 Excellent';
@@ -240,7 +223,7 @@ if (form) {
             resultCircle.style.filter = `drop-shadow(0 0 10px ${color})`;
             scoreText.style.color = color;
 
-            // Animate Score Counter
+
             let currentScore = 0;
             const duration = 1500;
             const step = finalScore / (duration / 16);
@@ -256,7 +239,7 @@ if (form) {
             };
             updateScore();
 
-            // Animate SVG Ring out of 10
+
             const circumference = 565;
             const offset = circumference - (finalScore / 10) * circumference; 
             
@@ -268,11 +251,11 @@ if (form) {
     });
 }
 
-// Function to reset form
+
 function resetForm() {
     resultState.style.display = 'none';
     form.reset();
     form.style.display = 'block';
-    resultCircle.style.strokeDashoffset = 565; // Reset ring
+    resultCircle.style.strokeDashoffset = 565; 
     scoreText.innerText = "0.0";
 }
