@@ -1,6 +1,4 @@
-
-
-const BACKEND_API_URL = 'https://mental-health-score-arjun.onrender.com';
+const BACKEND_API_URL = 'https://mental-health-score-arjun.onrender.com/predict';
 
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
